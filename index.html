@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diálogo Ancestral — Antropología Filosófica</title>
+  <meta name="description" content="Explora las cosmovisiones Muisca (Mhuysqa) e Iku (Arhuaca) en un diálogo intercultural con sustento filosófico. Proyecto académico de Antropología Filosófica UNAD.">
+  <meta property="og:title" content="Diálogo Ancestral — Antropología Filosófica">
+  <meta property="og:description" content="Cosmovisiones Muisca e Iku en diálogo intercultural con sustento filosófico (Cassirer, Panikkar, Aristóteles).">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://juandelossantos.github.io/antropologiaFilosoficaTarea4/">
+  <meta property="og:image" content="https://juandelossantos.github.io/antropologiaFilosoficaTarea4/assets/img/tab1-umbral.png">
+  <link rel="canonical" href="https://juandelossantos.github.io/antropologiaFilosoficaTarea4/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,7 +30,25 @@
       <a href="#conclusion" class="header__link" data-section="conclusion">Conclusión</a>
       <a href="#biblioteca" class="header__link" data-section="biblioteca">Referencias</a>
     </nav>
+    <button class="header__info-btn" id="header-info-btn" aria-label="Información del sitio" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+    </button>
   </header>
+
+  <!-- Mobile Info Dropdown -->
+  <div class="header-info" id="header-info">
+    <div class="header-info__content">
+      <span class="header-info__item">Universidad Nacional Abierta y a Distancia (UNAD)</span>
+      <span class="header-info__item">Antropología Filosófica (407011)</span>
+      <span class="header-info__item">Estudiante: David Emilio Sierra Puentes</span>
+      <span class="header-info__item">Tutora: Marisol Erazo</span>
+      <span class="header-info__item">Año: 2026</span>
+    </div>
+  </div>
 
   <!-- Main Content -->
   <main class="main" id="main-container">
@@ -32,7 +57,7 @@
     <section class="section" id="inicio" aria-label="Introducción">
       <div class="section__bg" style="background-image: url('assets/img/tab1-umbral.png')"></div>
       <div class="section__overlay"></div>
-      <div class="section__content">
+      <div class="section__content" tabindex="0">
         <h2 class="section__title">El Umbral</h2>
         <p class="section__text">Este sitio web no es solo un repositorio de información, sino un ejercicio de <strong>rememoración y recreación</strong>. Partimos de la premisa de que los seres humanos no se "descubren" mutuamente como objetos, sino que se <strong>encuentran</strong> como sujetos en un diálogo que debe ser mutuo y respetuoso. En un mundo marcado por el "olvido" de las raíces, este espacio busca recuperar el sentido de pertenencia; pues, como señala Miguel Rocha Vivas, un hombre sin el aprecio de sus raíces carece de morada cultural y termina siendo un "sepulcro anónimo" de su propia identidad.</p>
         <p class="section__text">Utilizaremos este sitio para transitar desde la visión técnica y fragmentada de la modernidad hacia una <strong>visión integral del ser humano</strong>. Invitamos al usuario a "descalzarse de la razón" para entrar en el bosque de la mística y el símbolo, donde el territorio es un libro abierto que espera ser leído.</p>
@@ -47,7 +72,7 @@
     <section class="section" id="mhuysqa" aria-label="Cosmovisión Muisca">
       <div class="section__bg" style="background-image: url('assets/img/tab2-mhuysqa.png')"></div>
       <div class="section__overlay"></div>
-      <div class="section__content compact">
+      <div class="section__content compact" tabindex="0">
         <h2 class="section__title">Mhuysqa: Hijos de la Laguna y el Tejido de la Memoria</h2>
         <h3 class="section__subtitle">Análisis del Origen</h3>
         <p class="section__text">La condición humana muisca se fundamenta en el <strong>principio creador del agua</strong>. La humanidad no surgió del barro, sino que "amaneció" en las aguas frías de la <strong>Laguna de Iguaque</strong> con la madre Bachué y su hijo. Este origen hídrico define al ser ("Mhuysqa") no como un individuo autosuficiente, sino como un sujeto en formación relacional que depende del aliento vital de la Madre Tierra.</p>
@@ -62,7 +87,7 @@
     <section class="section" id="iku" aria-label="Cosmovisión Iku">
       <div class="section__bg" style="background-image: url('assets/img/tab3-iku.png')"></div>
       <div class="section__overlay"></div>
-      <div class="section__content compact">
+      <div class="section__content compact" tabindex="0">
         <h2 class="section__title">Iku: Los Hermanos Mayores y el Equilibrio del Corazón del Mundo</h2>
         <h3 class="section__subtitle">La Ley de Origen</h3>
         <p class="section__text">Los Arhuacos se consideran los <strong>"Hermanos Mayores"</strong>, encargados de una "responsabilidad universal": mantener el equilibrio de todo lo existente. El ser humano nace con un mandato sagrado de cuidado y comunicación con los Padres Espirituales que habitan en los sitios sagrados de la Sierra.</p>
@@ -77,7 +102,7 @@
     <section class="section" id="filosofia" aria-label="Dimensión filosófica">
       <div class="section__bg" style="background-image: url('assets/img/tab4-simbolico.png')"></div>
       <div class="section__overlay"></div>
-      <div class="section__content compact">
+      <div class="section__content compact" tabindex="0">
         <h2 class="section__title">El Hombre como Animal Simbólico frente a la Técnica</h2>
         <h3 class="section__subtitle">Sustentación Filosófica</h3>
         <p class="section__text">Según <strong>Ernst Cassirer</strong>, lo que nos distingue no es la razón pura, sino nuestra capacidad de habitar un <strong>universo simbólico</strong> de lenguaje, mito y arte. Mientras los animales reaccionan a señales, el humano crea símbolos móviles que le permiten leer el espíritu en la materia.</p>
@@ -94,7 +119,7 @@
     <section class="section" id="comparacion" aria-label="Comparación intercultural">
       <div class="section__bg" style="background-image: url('assets/img/tab5-comparacion.png')"></div>
       <div class="section__overlay"></div>
-      <div class="section__content compact">
+      <div class="section__content compact" tabindex="0">
         <h2 class="section__title">El Tejido Crítico: Similitudes, Diferencias y Crisis</h2>
         <h3 class="section__subtitle">Similitudes</h3>
         <p class="section__text">Ambos pueblos comparten un <strong>humanismo amerindio</strong> donde el hombre no es el "dueño" de la naturaleza, sino una parte responsable de ella. Ambos se identifican como "Hijos del Agua" y ven el desequilibrio ambiental como una <strong>corrupción moral</strong> de la humanidad.</p>
@@ -109,7 +134,7 @@
     <section class="section" id="conclusion" aria-label="Conclusión filosófica">
       <div class="section__bg" style="background-image: url('assets/img/tab6-conclusion.png')"></div>
       <div class="section__overlay"></div>
-      <div class="section__content compact">
+      <div class="section__content compact" tabindex="0">
         <h2 class="section__title">Hacia un Humanismo Integral</h2>
         <h3 class="section__subtitle">La Nueva Inocencia</h3>
         <p class="section__text">Siguiendo a <strong>Raimon Panikkar</strong>, el reto actual es conquistar una "segunda inocencia" que nos permita superar el conocimiento fragmentado. No se trata de volver al pasado, sino de integrar lo humano, lo divino y lo material en una unidad orgánica o <strong>visión cosmoteándrica</strong>.</p>
@@ -126,7 +151,7 @@
     <section class="section" id="biblioteca" aria-label="Bibliografía">
       <div class="section__bg" style="background-image: url('assets/img/tab7-biblioteca.png')"></div>
       <div class="section__overlay"></div>
-      <div class="section__content">
+      <div class="section__content" tabindex="0">
         <h2 class="section__title">Biblioteca Ancestral</h2>
         <p class="section__text section__text--lead">La antología <strong>"Antes del Amanecer"</strong> de Miguel Rocha Vivas (2010) constituye la fuente base de las narrativas indígenas presentadas en este diálogo. Esta obra recopila mitos, cantos y relatos orales que permiten acceder al universo simbólico de los pueblos originarios de los Andes y la Sierra Nevada de Santa Marta.</p>
         <div class="biblioteca-page biblioteca-page--1 active" id="bib-page-1">
@@ -152,7 +177,6 @@
             <li class="bibliografia__item">Niño Vargas, J. C. (2025). Bajo la responsabilidad humana. Creación, conservación y destrucción del mundo entre los chibchas. <em>Revista Española de Antropología Americana</em>.</li>
             <li class="bibliografia__item">Panikkar, R. (2015). <em>Obras completas. Tomo I: Mística y espiritualidad. Vol. 1: Mística, plenitud de vida</em>. Herder.</li>
             <li class="bibliografia__item">Rocha Vivas, M. (Comp.). (2010). <em>Antes el amanecer. Antología de las literaturas indígenas de los Andes y la Sierra Nevada de Santa Marta</em> (Tomo 2). Ministerio de Cultura.</li>
-            <li class="bibliografia__item">Undermind. (2026). <em>Estudios comparativos interculturales de las cosmovisiones muisca y arhuaca</em> (Reporte de investigación).</li>
           </ul>
 
           <h3 class="section__subtitle">Imágenes Generadas por IA</h3>

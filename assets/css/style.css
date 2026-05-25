@@ -82,6 +82,20 @@ img {
 }
 
 /* -----------------------------------------------------
+   2b. Focus visible (accesibilidad teclado)
+   ----------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.section__content:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: -2px;
+}
+
+/* -----------------------------------------------------
    3. Header
    ----------------------------------------------------- */
 .header {
@@ -148,6 +162,55 @@ img {
 }
 
 /* -----------------------------------------------------
+   3b. Header Info Button & Dropdown (Mobile)
+   ----------------------------------------------------- */
+.header__info-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: var(--space-xs);
+  transition: color var(--transition-base);
+}
+
+.header__info-btn:hover,
+.header__info-btn[aria-expanded="true"] {
+  color: var(--accent-gold);
+}
+
+.header-info {
+  display: none;
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  background: rgba(15, 20, 25, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+  z-index: 99;
+  padding: var(--space-md);
+}
+
+.header-info--open {
+  display: block;
+}
+
+.header-info__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.header-info__item {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* -----------------------------------------------------
    4. Main & Sections (Desktop Horizontal)
    ----------------------------------------------------- */
 .main {
@@ -189,14 +252,14 @@ img {
   z-index: 1;
 }
 
-/* Placeholder backgrounds per section */
-#inicio .section__bg { background: linear-gradient(135deg, #1a2f23 0%, #0f1419 100%); }
-#mhuysqa .section__bg { background: linear-gradient(135deg, #0f2920 0%, #0f1419 100%); }
-#iku .section__bg { background: linear-gradient(135deg, #1a2a3a 0%, #0f1419 100%); }
-#filosofia .section__bg { background: linear-gradient(135deg, #2a1a3a 0%, #0f1419 100%); }
-#comparacion .section__bg { background: linear-gradient(135deg, #3a2a1a 0%, #0f1419 100%); }
-#conclusion .section__bg { background: linear-gradient(135deg, #1a3a2a 0%, #0f1419 100%); }
-#biblioteca .section__bg { background: linear-gradient(135deg, #3a3020 0%, #0f1419 100%); }
+/* Placeholder backgrounds per section — use background-image to avoid overriding size/repeat */
+#inicio .section__bg { background-image: linear-gradient(135deg, #1a2f23 0%, #0f1419 100%); }
+#mhuysqa .section__bg { background-image: linear-gradient(135deg, #0f2920 0%, #0f1419 100%); }
+#iku .section__bg { background-image: linear-gradient(135deg, #1a2a3a 0%, #0f1419 100%); }
+#filosofia .section__bg { background-image: linear-gradient(135deg, #2a1a3a 0%, #0f1419 100%); }
+#comparacion .section__bg { background-image: linear-gradient(135deg, #3a2a1a 0%, #0f1419 100%); }
+#conclusion .section__bg { background-image: linear-gradient(135deg, #1a3a2a 0%, #0f1419 100%); }
+#biblioteca .section__bg { background-image: linear-gradient(135deg, #3a3020 0%, #0f1419 100%); }
 
 .section__overlay {
   position: absolute;
@@ -677,6 +740,12 @@ img {
     display: none;
   }
 
+  .header__info-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .header__title {
     font-size: var(--text-base);
   }
@@ -706,9 +775,10 @@ img {
 
   .section__content {
     width: 92%;
-    padding: var(--space-sm) var(--space-md);
+    padding: var(--space-lg) var(--space-md);
     max-height: calc(100vh - var(--header-height) - var(--tab-bar-height) - 1rem);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .section__content::-webkit-scrollbar {
@@ -720,20 +790,19 @@ img {
     border-radius: 2px;
   }
 
-  .section__content {
-    width: 92%;
-    padding: var(--space-lg) var(--space-md);
-  }
-
-  .compact .section__text,
-  .compact .section__subtitle,
-  .compact .section__title,
-  .compact .cita__texto {
+  .compact .section__text {
     font-size: inherit;
   }
 
   .section__title {
-    font-size: var(--text-xl);
+    font-size: clamp(1.75rem, 1.5rem + 1.5vw, 2.5rem);
+    margin-bottom: var(--space-md);
+  }
+
+  .section__subtitle {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-sm);
   }
 
   .section__text {

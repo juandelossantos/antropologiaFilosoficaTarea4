@@ -25,3 +25,12 @@ temp/
 
 # ARS pipeline state (not part of project)
 state/
+
+# Agent session files (local dev only)
+.sessionrc
+AGENTS.md
+
+# Working documents (content already integrated into index.html)
+content-extended.md
+instructions.md
+SPEC.md

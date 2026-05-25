@@ -210,6 +210,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /**
+   * Mobile info toggle
+   */
+  const infoBtn = document.getElementById('header-info-btn');
+  const infoPanel = document.getElementById('header-info');
+
+  if (infoBtn && infoPanel) {
+    infoBtn.addEventListener('click', () => {
+      const isOpen = infoBtn.getAttribute('aria-expanded') === 'true';
+      infoBtn.setAttribute('aria-expanded', !isOpen);
+      infoPanel.classList.toggle('header-info--open', !isOpen);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#header-info') && !e.target.closest('#header-info-btn')) {
+        infoBtn.setAttribute('aria-expanded', 'false');
+        infoPanel.classList.remove('header-info--open');
+      }
+    });
+  }
+
+  /**
    * Set initial active state
    */
   const initialSection = ids[getCurrentIndex()] || 'inicio';
