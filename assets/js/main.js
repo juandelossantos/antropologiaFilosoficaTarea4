@@ -210,6 +210,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /**
+   * Prompt modal
+   */
+  const promptCards = document.querySelectorAll('.prompt-card');
+  const promptModal = document.getElementById('prompt-modal');
+  const promptText = document.getElementById('prompt-modal-text');
+  const promptClose = document.getElementById('prompt-modal-close');
+  const promptOverlay = document.getElementById('prompt-modal-overlay');
+
+  if (promptCards.length && promptModal && promptText && promptClose && promptOverlay) {
+    promptCards.forEach(card => {
+      card.addEventListener('click', () => {
+        promptText.textContent = card.dataset.prompt;
+        promptModal.classList.add('prompt-modal--open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closePromptModal() {
+      promptModal.classList.remove('prompt-modal--open');
+      document.body.style.overflow = '';
+    }
+
+    promptClose.addEventListener('click', closePromptModal);
+    promptOverlay.addEventListener('click', closePromptModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && promptModal.classList.contains('prompt-modal--open')) {
+        closePromptModal();
+      }
+    });
+  }
+
+  /**
    * Mobile info toggle
    */
   const infoBtn = document.getElementById('header-info-btn');
