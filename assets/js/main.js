@@ -1,6 +1,7 @@
 /**
  * Diálogo Ancestral — Main JavaScript
- * Handles smooth navigation, active states, and keyboard support.
+ * Handles smooth navigation, active states, keyboard support,
+ * arrow buttons, section dots, and responsive behavior.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,10 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('.section');
   const headerLinks = document.querySelectorAll('.header__link');
   const tabBarItems = document.querySelectorAll('.tab-bar__item');
-  const tabBar = document.getElementById('tab-bar');
+  const dots = document.querySelectorAll('.section-dot');
+  const navLeft = document.getElementById('nav-left');
+  const navRight = document.getElementById('nav-right');
 
-  // Detect if we're in mobile mode (matches the CSS media query)
   const isMobile = () => window.innerWidth <= 768;
+  const ids = Array.from(sections).map(s => s.id);
 
   /**
    * Smooth scroll to a section by ID
@@ -23,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isMobile()) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-      // On desktop, main is the scroll container
       main.scrollTo({
         left: target.offsetLeft,
         behavior: 'smooth'
@@ -32,7 +34,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /**
-   * Update active state on navigation links
+   * Get current visible section index
+   */
+  function getCurrentIndex() {
+    if (isMobile()) {
+      let closest = 0;
+      let minDistance = Infinity;
+      sections.forEach((section, i) => {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closest = i;
+        }
+      });
+      return closest;
+    } else {
+      const scrollLeft = main.scrollLeft;
+      const viewportWidth = window.innerWidth;
+      return Math.round(scrollLeft / viewportWidth);
+    }
+  }
+
+  /**
+   * Update active state on all navigation elements
    */
   function setActiveNav(id) {
     headerLinks.forEach(link => {
@@ -41,38 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
     tabBarItems.forEach(item => {
       item.classList.toggle('active', item.dataset.section === id);
     });
+    dots.forEach(dot => {
+      dot.classList.toggle('active', dot.dataset.section === id);
+    });
   }
 
   /**
-   * Determine which section is currently in view
-   */
-  function getCurrentSection() {
-    if (isMobile()) {
-      // Mobile: find section closest to top of viewport
-      let closest = null;
-      let minDistance = Infinity;
-
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.top);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closest = section;
-        }
-      });
-
-      return closest ? closest.id : null;
-    } else {
-      // Desktop: based on main scroll position
-      const scrollLeft = main.scrollLeft;
-      const viewportWidth = window.innerWidth;
-      const index = Math.round(scrollLeft / viewportWidth);
-      return sections[index] ? sections[index].id : null;
-    }
-  }
-
-  /**
-   * IntersectionObserver for active state updates (mobile + desktop)
+   * IntersectionObserver for active state updates
    */
   const observerOptions = {
     root: isMobile() ? null : main,
@@ -114,16 +114,40 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /**
+   * Handle click on section dots
+   */
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const id = dot.dataset.section;
+      scrollToSection(id);
+      setActiveNav(id);
+    });
+  });
+
+  /**
+   * Handle navigation arrows
+   */
+  navLeft.addEventListener('click', () => {
+    const currentIndex = getCurrentIndex();
+    if (currentIndex > 0) {
+      scrollToSection(ids[currentIndex - 1]);
+    }
+  });
+
+  navRight.addEventListener('click', () => {
+    const currentIndex = getCurrentIndex();
+    if (currentIndex < ids.length - 1) {
+      scrollToSection(ids[currentIndex + 1]);
+    }
+  });
+
+  /**
    * Keyboard navigation (arrow keys)
    */
   document.addEventListener('keydown', (e) => {
-    if (isMobile()) return; // Keyboard nav only useful on desktop horizontal
+    if (isMobile()) return;
 
-    const currentId = getCurrentSection();
-    if (!currentId) return;
-
-    const ids = Array.from(sections).map(s => s.id);
-    const currentIndex = ids.indexOf(currentId);
+    const currentIndex = getCurrentIndex();
 
     if (e.key === 'ArrowRight' && currentIndex < ids.length - 1) {
       e.preventDefault();
@@ -160,6 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Set initial active state
    */
-  const initialSection = getCurrentSection() || 'inicio';
+  const initialSection = ids[getCurrentIndex()] || 'inicio';
   setActiveNav(initialSection);
 });
