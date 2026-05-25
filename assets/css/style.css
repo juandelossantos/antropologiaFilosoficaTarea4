@@ -185,6 +185,7 @@ img {
   inset: 0;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   z-index: 1;
 }
 
@@ -530,6 +531,57 @@ img {
 }
 
 /* -----------------------------------------------------
+   8c. Biblioteca Pagination
+   ----------------------------------------------------- */
+.biblioteca-page {
+  display: none;
+}
+
+.biblioteca-page.active {
+  display: block;
+}
+
+.bibliografia--compact .bibliografia__item {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: var(--space-xs);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(245, 240, 232, 0.1);
+}
+
+.pagination__btn {
+  background: transparent;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.pagination__btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+}
+
+.pagination__label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* -----------------------------------------------------
    9. Footer
    ----------------------------------------------------- */
 .footer {
@@ -632,21 +684,40 @@ img {
   .main {
     display: block;
     overflow-x: hidden;
-    overflow-y: auto;
-    scroll-snap-type: none;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
     padding-top: var(--header-height);
     padding-bottom: calc(var(--tab-bar-height) + 2.5rem);
-    height: auto;
-    min-height: 100vh;
+    height: 100vh;
   }
 
   .section {
     min-width: 100%;
     width: 100%;
-    height: auto;
-    min-height: 100vh;
-    scroll-snap-align: none;
-    padding: var(--space-lg) 0;
+    height: calc(100vh - var(--header-height));
+    min-height: calc(100vh - var(--header-height));
+    scroll-snap-align: start;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .section__content {
+    width: 92%;
+    padding: var(--space-sm) var(--space-md);
+    max-height: calc(100vh - var(--header-height) - var(--tab-bar-height) - 1rem);
+    overflow-y: auto;
+  }
+
+  .section__content::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .section__content::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 2px;
   }
 
   .section__content {

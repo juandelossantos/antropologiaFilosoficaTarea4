@@ -190,6 +190,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /**
+   * Biblioteca pagination
+   */
+  const bibPage1 = document.getElementById('bib-page-1');
+  const bibPage2 = document.getElementById('bib-page-2');
+  const bibNext = document.getElementById('bib-next');
+  const bibPrev = document.getElementById('bib-prev');
+
+  if (bibNext && bibPrev && bibPage1 && bibPage2) {
+    bibNext.addEventListener('click', () => {
+      bibPage1.classList.remove('active');
+      bibPage2.classList.add('active');
+    });
+
+    bibPrev.addEventListener('click', () => {
+      bibPage2.classList.remove('active');
+      bibPage1.classList.add('active');
+    });
+  }
+
+  /**
    * Set initial active state
    */
   const initialSection = ids[getCurrentIndex()] || 'inicio';
