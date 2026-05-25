@@ -446,6 +446,83 @@ img {
 }
 
 /* -----------------------------------------------------
+   8b. Accordion (Image Prompts)
+   ----------------------------------------------------- */
+.accordion {
+  max-width: 75ch;
+  margin: var(--space-lg) auto 0;
+  text-align: left;
+}
+
+.accordion__item {
+  border: 1px solid rgba(245, 240, 232, 0.1);
+  border-radius: 8px;
+  margin-bottom: var(--space-sm);
+  overflow: hidden;
+  background: rgba(15, 20, 25, 0.5);
+}
+
+.accordion__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: background var(--transition-base);
+  list-style: none;
+}
+
+.accordion__header:hover {
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.accordion__header::-webkit-details-marker {
+  display: none;
+}
+
+.accordion__icon {
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  transition: transform var(--transition-base);
+  flex-shrink: 0;
+}
+
+.accordion__item[open] .accordion__icon {
+  transform: rotate(90deg);
+}
+
+.accordion__title {
+  flex: 1;
+}
+
+.accordion__title code {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.8em;
+  color: var(--accent-gold);
+  background: rgba(212, 175, 55, 0.1);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+.accordion__content {
+  padding: 0 var(--space-md) var(--space-md) var(--space-md);
+}
+
+.accordion__prompt {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-style: italic;
+  border-left: 2px solid rgba(212, 175, 55, 0.3);
+  padding-left: var(--space-sm);
+}
+
+/* -----------------------------------------------------
    9. Footer
    ----------------------------------------------------- */
 .footer {
