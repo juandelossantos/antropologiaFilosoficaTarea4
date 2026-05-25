@@ -174,17 +174,15 @@ img {
   min-width: 100vw;
   height: calc(100vh - var(--header-height) - var(--footer-height));
   scroll-snap-align: start;
-  display: grid;
-  grid-template-columns: 45% 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
 .section__bg {
-  grid-column: 1;
-  grid-row: 1;
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   background-size: cover;
   background-position: center;
   z-index: 1;
@@ -200,27 +198,46 @@ img {
 #biblioteca .section__bg { background: linear-gradient(135deg, #3a3020 0%, #0f1419 100%); }
 
 .section__overlay {
-  grid-column: 1;
-  grid-row: 1;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: rgba(15, 20, 25, 0.25);
+  position: absolute;
+  inset: 0;
+  background: var(--bg-overlay);
   z-index: 2;
 }
 
 .section__content {
-  grid-column: 2;
-  grid-row: 1;
   position: relative;
   z-index: 3;
+  max-width: 1200px;
+  width: 90%;
   padding: var(--space-xl);
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  background: rgba(15, 20, 25, 0.92);
+  text-align: center;
+}
+
+/* Compact desktop layout to fit without scrolling */
+.compact .section__text {
+  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 1.05rem);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.compact .section__subtitle {
+  font-size: clamp(0.9rem, 0.85rem + 0.3vw, 1.15rem);
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.compact .section__title {
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2.5rem);
+  margin-bottom: var(--space-md);
+}
+
+.compact .cita {
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-sm) auto;
+}
+
+.compact .cita__texto {
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.1rem);
 }
 
 .section__title {
@@ -630,36 +647,18 @@ img {
     min-height: 100vh;
     scroll-snap-align: none;
     padding: var(--space-lg) 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .section__bg {
-    position: absolute;
-    inset: 0;
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .section__overlay {
-    position: absolute;
-    inset: 0;
-    background: var(--bg-overlay);
-    grid-column: auto;
-    grid-row: auto;
   }
 
   .section__content {
     width: 92%;
     padding: var(--space-lg) var(--space-md);
-    grid-column: auto;
-    grid-row: auto;
-    position: relative;
-    text-align: center;
-    background: transparent;
-    overflow-y: visible;
+  }
+
+  .compact .section__text,
+  .compact .section__subtitle,
+  .compact .section__title,
+  .compact .cita__texto {
+    font-size: inherit;
   }
 
   .section__title {
