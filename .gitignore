@@ -19,3 +19,9 @@ Thumbs.db
 # Temporary files
 tmp/
 temp/
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# ARS pipeline state (not part of project)
+state/

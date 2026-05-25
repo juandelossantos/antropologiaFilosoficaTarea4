@@ -1,0 +1,478 @@
+/* =====================================================
+   Diálogo Ancestral — Global Styles
+   ===================================================== */
+
+/* -----------------------------------------------------
+   1. CSS Variables
+   ----------------------------------------------------- */
+:root {
+  /* Palette */
+  --bg-primary: #0F1419;
+  --bg-overlay: rgba(15, 20, 25, 0.75);
+  --text-primary: #F5F0E8;
+  --text-muted: #A8A39A;
+  --accent-mhuysqa: #2E8B57;
+  --accent-iku: #87CEEB;
+  --accent-gold: #D4AF37;
+  --accent-earth: #8B4513;
+
+  /* Typography */
+  --font-serif: 'Crimson Text', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --text-base: clamp(0.9375rem, 0.9rem + 0.2vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  --line-height-body: 1.75;
+  --line-height-heading: 1.2;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Layout */
+  --header-height: 4rem;
+  --footer-height: 2.5rem;
+  --tab-bar-height: 3.5rem;
+  --section-min-height: calc(100vh - var(--header-height) - var(--footer-height));
+
+  /* Transitions */
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* -----------------------------------------------------
+   2. Reset & Base
+   ----------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  overflow: hidden; /* Desktop: controlled by main */
+  height: 100vh;
+  width: 100vw;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* -----------------------------------------------------
+   3. Header
+   ----------------------------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: rgba(15, 20, 25, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-lg);
+  z-index: 100;
+}
+
+.header__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--accent-gold);
+  letter-spacing: 0.02em;
+}
+
+.header__nav {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.header__link {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color var(--transition-base);
+  position: relative;
+}
+
+.header__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-gold);
+  transition: width var(--transition-base);
+}
+
+.header__link:hover,
+.header__link.active {
+  color: var(--text-primary);
+}
+
+.header__link:hover::after,
+.header__link.active::after {
+  width: 100%;
+}
+
+/* -----------------------------------------------------
+   4. Main & Sections (Desktop Horizontal)
+   ----------------------------------------------------- */
+.main {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
+  /* Hide scrollbar for cleaner look */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.main::-webkit-scrollbar {
+  display: none;
+}
+
+.section {
+  position: relative;
+  min-width: 100vw;
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.section__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  /* Placeholder gradients while images are not available */
+}
+
+/* Placeholder backgrounds per section */
+#inicio .section__bg { background: linear-gradient(135deg, #1a2f23 0%, #0f1419 100%); }
+#mhuysqa .section__bg { background: linear-gradient(135deg, #0f2920 0%, #0f1419 100%); }
+#iku .section__bg { background: linear-gradient(135deg, #1a2a3a 0%, #0f1419 100%); }
+#filosofia .section__bg { background: linear-gradient(135deg, #2a1a3a 0%, #0f1419 100%); }
+#comparacion .section__bg { background: linear-gradient(135deg, #3a2a1a 0%, #0f1419 100%); }
+#conclusion .section__bg { background: linear-gradient(135deg, #1a3a2a 0%, #0f1419 100%); }
+#biblioteca .section__bg { background: linear-gradient(135deg, #3a3020 0%, #0f1419 100%); }
+
+.section__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-overlay);
+  z-index: 2;
+}
+
+.section__content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  width: 90%;
+  padding: var(--space-xl);
+  text-align: center;
+}
+
+.section__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: var(--line-height-heading);
+  margin-bottom: var(--space-lg);
+  color: var(--text-primary);
+}
+
+.section__subtitle {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--accent-gold);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.section__text {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section__text--hint {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.9375rem;
+}
+
+.section__text--lead {
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+/* -----------------------------------------------------
+   5. Citas
+   ----------------------------------------------------- */
+.cita {
+  margin: var(--space-lg) auto;
+  padding: var(--space-md) var(--space-lg);
+  border-left: 4px solid var(--accent-gold);
+  background: rgba(212, 175, 55, 0.08);
+  max-width: 55ch;
+  text-align: left;
+}
+
+.cita__texto {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.cita__autor {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent-gold);
+  letter-spacing: 0.05em;
+}
+
+/* -----------------------------------------------------
+   6. Bibliografía
+   ----------------------------------------------------- */
+.bibliografia {
+  list-style: none;
+  text-align: left;
+  max-width: 70ch;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.bibliografia__item {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-md);
+  position: relative;
+  line-height: 1.6;
+}
+
+.bibliografia__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+}
+
+/* -----------------------------------------------------
+   7. Footer
+   ----------------------------------------------------- */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--footer-height);
+  background: rgba(15, 20, 25, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(245, 240, 232, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0 var(--space-lg);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  z-index: 100;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.footer__divider {
+  color: rgba(168, 163, 154, 0.4);
+}
+
+/* -----------------------------------------------------
+   8. Mobile Bottom Tab Bar
+   ----------------------------------------------------- */
+.tab-bar {
+  display: none; /* Hidden on desktop */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--tab-bar-height);
+  background: rgba(15, 20, 25, 0.98);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(245, 240, 232, 0.1);
+  z-index: 100;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 var(--space-xs);
+}
+
+.tab-bar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--text-muted);
+  transition: color var(--transition-base);
+  flex: 1;
+  min-width: 0;
+}
+
+.tab-bar__item.active,
+.tab-bar__item:hover {
+  color: var(--accent-gold);
+}
+
+.tab-bar__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.tab-bar__label {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* -----------------------------------------------------
+   9. Responsive (Mobile)
+   ----------------------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 3.5rem;
+    --footer-height: 0; /* Footer hidden on mobile to save space */
+  }
+
+  .header__nav {
+    display: none; /* Hide desktop nav, use tab bar */
+  }
+
+  .header__title {
+    font-size: var(--text-base);
+  }
+
+  .main {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: none;
+    padding-top: var(--header-height);
+    padding-bottom: var(--tab-bar-height);
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .section {
+    min-width: 100%;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    scroll-snap-align: none;
+    padding: var(--space-lg) 0;
+  }
+
+  .section__content {
+    width: 92%;
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .section__title {
+    font-size: var(--text-xl);
+  }
+
+  .cita {
+    padding: var(--space-sm) var(--space-md);
+    margin: var(--space-md) auto;
+  }
+
+  .cita__texto {
+    font-size: var(--text-base);
+  }
+
+  .footer {
+    display: none; /* Footer hidden on mobile, info goes to tab area or header */
+  }
+
+  .tab-bar {
+    display: flex;
+  }
+
+  .bibliografia__item {
+    font-size: 0.875rem;
+  }
+}
+
+/* Very small mobile adjustments */
+@media (max-width: 380px) {
+  .tab-bar__label {
+    font-size: 0.55rem;
+  }
+
+  .section__content {
+    width: 95%;
+    padding: var(--space-md) var(--space-sm);
+  }
+}
