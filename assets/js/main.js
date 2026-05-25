@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dots = document.querySelectorAll('.section-dot');
   const navLeft = document.getElementById('nav-left');
   const navRight = document.getElementById('nav-right');
+  const mobileProgressBar = document.getElementById('mobile-progress-bar');
 
   const isMobile = () => window.innerWidth <= 768;
   const ids = Array.from(sections).map(s => s.id);
@@ -69,6 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
     dots.forEach(dot => {
       dot.classList.toggle('active', dot.dataset.section === id);
     });
+
+    // Update mobile progress bar
+    if (mobileProgressBar) {
+      const index = ids.indexOf(id);
+      const progress = ((index + 1) / ids.length) * 100;
+      mobileProgressBar.style.width = progress + '%';
+    }
   }
 
   /**
